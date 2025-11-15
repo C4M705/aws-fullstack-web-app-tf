@@ -277,18 +277,18 @@ jobs:
             --container-definitions '[
               {
                 "name": "db-migration",
-                "image": "${ECR_REPOSITORY_URL}:migration",
+                "image": "'${ECR_REPOSITORY_URL}:migration'",
                 "essential": true,
                 "environment": [
                   {
                     "name": "PGPASSWORD",
-                    "value": "${{ secrets.DB_PASSWORD }}"
+                    "value": "'${{ secrets.DB_PASSWORD }}'"
                   }
                 ],
                 "logConfiguration": {
                 "logDriver": "awslogs",
                 "options": {
-                  "awslogs-group": "${DB_MIGRATION_LOG_GROUP_NAME}",
+                  "awslogs-group": "'${DB_MIGRATION_LOG_GROUP_NAME}'",
                   "awslogs-region": "${{ env.AWS_REGION }}",
                   "awslogs-stream-prefix": "ecs"
                   }
