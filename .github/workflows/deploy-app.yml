@@ -73,11 +73,11 @@ jobs:
             -backend-config="dynamodb_table=${{ secrets.TERRAFORM_LOCK_TABLE }}"
           
           terraform plan \
+            -lock=false \
             -var="aws_region=${{ env.AWS_REGION }}" \
             -var="db_name=${{ secrets.DB_NAME }}" \
             -var="db_username=${{ secrets.DB_USERNAME }}" \
             -var="db_password=${{ secrets.DB_PASSWORD }}" \
-            -lock=false \
             -out=tfplan
           
           terraform apply -auto-approve tfplan
